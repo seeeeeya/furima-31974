@@ -5,9 +5,8 @@
 | Column                | Type    | Options    |
 | --------------------- | ------- | ---------- |
 | nickname              | string  | null:false |
-| mail_address          | string  | null:false |
-| password              | integer | null:false | 
-| password_confirmation | integer | null:false | 
+| email                 | string  | null:false |
+| encrypted_password    | integer | null:false |  
 | family_name           | string  | null:false |
 | last_name             | string  | null:false |
 | family_name_kana      | string  | null:false |
@@ -16,35 +15,32 @@
 
 # Association
 # has_many :items
-# has_one :purchase
+# has_one :purchases
 
 ## items テーブル
 
-| Column              | Type    | Options    |
-| ------------------- | ------- | ---------- |
-| product_name        | string  | null:false |
-| description_of_item | string  | null:false |
-| category            | text    | null:false |
-| product_condition   | string  | null:false |
-| shipping_charges    | string  | null:false |
-| prefectures         | string  | null:false |
-| days_to_ship        | string  | null:false |
-| price               | integer | null:false |
-| user_id             | integer | references|
+| Column              | Type    | Options          |
+| ------------------- | ------- | ---------------- |
+| name                | string  | null:false       |
+| description_of_item | string  | null:false       |
+| category            | text    | null:false       |
+| product_condition   | string  | null:false       |
+| shipping_charges    | string  | null:false       |
+| prefectures         | string  | null:false       |
+| days_to_ship        | string  | null:false       |
+| price               | integer | null:false       |
+| user_id             | integer | foreign_key:true |
 
 # Association
 # belongs_to :user
 # has_one :purchase
 
-## purchase テーブル
+## purchases テーブル
 
-| Column          | Type    | Options    |
-| --------------- | ------- | ---------- |
-| card_number     | integer | null:false |
-| expiration_date | integer | null:false |
-| security_code   | integer | null:false |
-| user_id         | integer | references |
-| item_id         | integer | references |
+| Column          | Type    | Options          |
+| --------------- | ------- | ---------------- |
+| user_id         | integer | foreign_key:true |
+| item_id         | integer | foreign_key:true |
 
 # Association
 # belongs_to :user
@@ -53,14 +49,15 @@
 
 ## shipping_address
 
-| Column        | Type    | Options    |
-| ------------- | ------- | ---------- |
-| postal_code   | integer | null:false |
-| prefectures   | string  | null:false |
-| municipality  | string  | null:false |
-| address       | string  | null:false |
-| building_name | string  | null:true  |
-| phone_number  | integer | null:false |
+| Column        | Type    | Options          |
+| ------------- | ------- | ---------------- |
+| postal_code   | string  | null:false       |
+| prefectures   | string  | null:false       |
+| municipality  | string  | null:false       |
+| address       | string  | null:false       |
+| building_name | string  | null:true        |
+| phone_number  | string  | null:false       |
+| user_id       | integer | foreign_key:true |
 
 # Association
 # belongs_to :purchase
