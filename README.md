@@ -2,11 +2,13 @@
 
 ## users テーブル
 
-| Column         | Type   | Options  |
-| -------------- | ------ | -------- |
-| name           | string | NOT NULL |
-| email          | string | NOT NULL |
-| password       | string | NOT NULL |   
+| Column         | Type   | Options    |
+| -------------- | ------ | ---------- |
+| name           | string | null:false |
+| name_width     | string | null:false |
+| birthday       | string | null:false |
+| email          | string | null:false |
+| password       | string | null:false | 
 
 # Association
 # has_many :items
@@ -14,12 +16,14 @@
 
 ## items テーブル
 
-| Column         | Type   | Options  |
-| -------------- | ------ | -------- |
-| product_name   | string | NOT NULL |
-| category       | text   | NOT NULL |
-| price          | string | NOT NULL |
-| seller         | string | NOT NULL |
+| Column         | Type   | Options    |
+| -------------- | ------ | ---------- |
+| product_name   | string | null:false |
+| status         | string | null:false |
+| category       | text   | null:false |
+| category_save  | text   | null:false |
+| price          | string | null:false |
+| seller         | string | null:false |
 
 # Association
 # belongs_to :user
@@ -27,9 +31,11 @@
 
 ## purchase テーブル
 
-| Column   | Type   | Options  |
-| -------- | ------ | -------- | 
-| purchase | string | NOT NULL |
+| Column              | Type   | Options    |
+| ------------------- | ------ | ---------- | 
+| purchase            | string | null:false |
+| user                | string | null:false |
+| product_information | string | null:false |
 
 # Association
 # belongs_to :user
@@ -38,9 +44,11 @@
 
 ## shipping_address
 
-| Column           | Type   | Options  |
-| ---------------- | ------ | -------- |
-| shipping_address | string | NOT NULL |
+| Column           | Type   | Options    |
+| ---------------- | ------ | ---------- |
+| shipping_address | string | null:false |
+| prefectures      | text   | null:false |
+| building_name    | string | null:false |
 
 # Association
 # belongs_to :purchase
