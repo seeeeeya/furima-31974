@@ -15,7 +15,7 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include "Email can't be blank"
     end
-    it "email一意性であること" do
+    it "emailは一意性であること" do
       @user = FactoryBot.create(:user, email:'test@test')
       another_user = FactoryBot.build(:user, email: 'test@test')
       another_user.valid?
@@ -66,10 +66,15 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include "Last name can't be blank", "Last name 全角(ひらがな カタカナ 漢字)が使えます"
     end
-    it "family_nameとlast_nameは漢字、平仮名、カタカナ以外では登録できない" do
+    it "family_nameは漢字、平仮名、カタカナ以外では登録できない" do
       @user.family_name = "abc"
       @user.valid?
       expect(@user.errors.full_messages).to include "Family name 全角(ひらがな カタカナ 漢字)が使えます"
+    end
+    it "last_nameは漢字、平仮名、カタカナ以外では登録できない" do
+      @user.last_name = "abc"
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Last name 全角(ひらがな カタカナ 漢字)が使えます"
     end
     it "family_name_kanaが空では登録できない" do
       @user.family_name_kana = ""
@@ -81,10 +86,15 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include "Last name kana can't be blank", "Last name kana 全角カタカナのみが使えます"
     end
-    it "family_name_kanaとlast_name_kanaは全角カタカナ以外では登録できない" do
+    it "family_name_kanaは全角カタカナ以外では登録できない" do
       @user.family_name_kana = "あ"
       @user.valid?
       expect(@user.errors.full_messages).to include "Family name kana 全角カタカナのみが使えます"
+    end
+    it "last_name_kanaは全角カタカナ以外では登録できない" do 
+      @user.last_name_kana = "あ"
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Last name kana 全角カタカナのみが使えます"
     end
     it "birthdayが空では登録できない" do
       @user.birthday = ""

@@ -19,7 +19,7 @@ class User < ApplicationRecord
     validates :last_name_kana
   end
 
-  validates :password,format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i,message:  "半角英数字混合のみ使えます"}
+  validates :password,format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i,message: "半角英数字混合のみ使えます"}
 
   has_many :items
   has_many :purchases
