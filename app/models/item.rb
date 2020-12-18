@@ -5,10 +5,10 @@ class Item < ApplicationRecord
     validates :name
     validates :description_of_item
     validates :category_id, numericality:{ other_than: 1 }
-    validates :product_condition_id, numericality:{ pther_than: 1 }
-    validates :shipping_charges_id, numericality:{ pther_than: 1 }
-    validates :prefectures_id, numericality:{ pther_than: 1 }
-    validates :days_to_ship_id, numericality:{ pther_than: 1 }
+    validates :product_condition_id, numericality:{ other_than: 1 }
+    validates :shipping_charges_id, numericality:{ other_than: 1 }
+    validates :prefectures_id, numericality:{ other_than: 1 }
+    validates :days_to_ship_id, numericality:{ other_than: 1 }
     validates :price, numericality:{ greater_than: 300, less_than: 9_999_999 }
   end
 
@@ -18,4 +18,5 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one :purchase
   has_many :articles
+  has_one_attached :image
 end
