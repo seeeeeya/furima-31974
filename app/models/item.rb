@@ -1,5 +1,7 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :shipping_charge
+
   with_options presence: true do
     validates :image
     validates :name
@@ -8,8 +10,8 @@ class Item < ApplicationRecord
   with_options presence: true, numericality:{ other_than: 1 } do 
     validates :category_id 
     validates :product_condition_id
-    validates :shipping_charges_id
-    validates :prefectures_id
+    validates :shipping_charge_id
+    validates :prefecture_id
     validates :days_to_ship_id
   end
     validates :price, numericality:{ greater_than: 299, less_than: 10_000_000 }
@@ -18,4 +20,5 @@ class Item < ApplicationRecord
 
   belongs_to :user
   has_one_attached :image
+
 end
