@@ -22,27 +22,27 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Description of item can't be blank")
     end
     it "category_idを選択しないと出品できない" do
-      @item.category_id = "1"
+      @item.category_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Category must be other than 1")
     end
     it "product_condition_idを選択しないと出品できない" do
-      @item.product_condition_id = "1"
+      @item.product_condition_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Product condition must be other than 1")
     end
     it "shipping_charges_idを選択しないと出品できない" do
-      @item.shipping_charges_id = "1"
+      @item.shipping_charges_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Shipping charges must be other than 1")
     end
     it "prefectures_idを選択しないと出品できない" do
-      @item.prefectures_id = "1"
+      @item.prefectures_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Prefectures must be other than 1")
     end
     it "days_to_ship_idを選択しないと出品できない" do
-      @item.days_to_ship_id = "1"
+      @item.days_to_ship_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Days to ship must be other than 1")
     end
@@ -57,12 +57,12 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Price is not a number")
     end
     it "priceが299円以下では出品できない" do
-      @item.price = "299"
+      @item.price = 299
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price must be greater than 300")
+      expect(@item.errors.full_messages).to include("Price must be greater than 299")
     end
     it "priceが10,000,000円以上では出品できない" do
-      @item.price = "10,000,000"
+      @item.price = 10,000,000
       @item.valid?
       expect(@item.errors.full_messages).to include("Price is not a number")
     end
