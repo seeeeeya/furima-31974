@@ -3,7 +3,6 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :image
     validates :name
-    validates :user_id
     validates :description_of_item
     validates :category_id, numericality:{ other_than: 1 }
     validates :product_condition_id, numericality:{ other_than: 1 }
