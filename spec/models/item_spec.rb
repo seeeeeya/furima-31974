@@ -1,8 +1,7 @@
 require 'rails_helper'
 RSpec.describe Item, type: :model do
   before do
-    @user = FactoryBot.create(:user)
-    @item = FactoryBot.build(:item, user_id: @user.id)
+    @item = FactoryBot.build(:item)
   end
 
   describe '商品作成' do
@@ -49,7 +48,7 @@ RSpec.describe Item, type: :model do
     it "priceが空だと出品できない" do
       @item.price = nil
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price can't be blank", "Price is not a number", "Price 半角数字のみ使えます")
+      expect(@item.errors.full_messages).to include("Price is not a number", "Price 半角数字のみ使えます")
     end
     it "priceが全角数字だと出品できない" do
       @item.price = "２０００"
